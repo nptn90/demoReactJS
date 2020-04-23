@@ -1,0 +1,26 @@
+server:
+  port: 8085
+system:
+  user:
+    username: nhan
+    password: nguyen
+    fullName: Nhan Nguyen Pham Thanh
+    roles: 
+      - ADMIN
+      - SYSADMIN
+    email: nhan.nguyen@wizeline.com
+  password-sec:
+    salt: fkljgdiogriengfbflkbjdfk
+  jwt:
+    secret-key: nhantest
+    ##minute expired time
+    expired-time: 30
+#MongoDB
+spring:
+  profiles:
+    active:
+    - ${ENVIROMENT:prod}
+    - ${DATABASE:mysql}
+  jpa:
+    hibernate:
+      ddl-auto: update
