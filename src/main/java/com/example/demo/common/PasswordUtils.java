@@ -1,19 +1,15 @@
 package com.example.demo.common;
 
-import java.security.MessageDigest;
-
 import org.passay.CharacterData;
 import org.passay.CharacterRule;
 import org.passay.EnglishCharacterData;
 import org.passay.PasswordGenerator;
-import org.springframework.beans.factory.annotation.Value;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
 @Component
 public class PasswordUtils {
-	
-	@Value("${system.password-sec.salt}")
-	private String salt;
 	
 	public String generatePassayPassword() {
 	    PasswordGenerator gen = new PasswordGenerator();
@@ -46,13 +42,13 @@ public class PasswordUtils {
 	    return password;
 	}
 	
-	public String hashPassword(String password) throws Exception {
-		MessageDigest md = MessageDigest.getInstance("SHA-256");
-		md.update(salt.getBytes());
-		return null;
+	public String hashPassword(String password) {
+		PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+		return passwordEncoder.encode(password);
 	}
 	
-	public String getSalt() {
-		return salt;
+	public boolean isPasswordMatch(String rawPassword, String encoded) {
+		PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+		return passwordEncoder.matches(rawPassword, encoded);
 	}
 }

@@ -9,8 +9,6 @@ system:
       - ADMIN
       - SYSADMIN
     email: nhan.nguyen@wizeline.com
-  password-sec:
-    salt: fkljgdiogriengfbflkbjdfk
   jwt:
     secret-key: nhantest
     ##minute expired time
@@ -19,7 +17,7 @@ system:
 spring:
   profiles:
     active:
-    - ${ENVIROMENT:prod}
+    - ${ENVIROMENT:dev}
     - ${DATABASE:mysql}
   jpa:
     hibernate:

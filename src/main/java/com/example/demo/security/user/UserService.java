@@ -9,6 +9,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.stereotype.Service;
 
+import com.example.demo.common.PasswordUtils;
 import com.example.demo.entity.UserPersist;
 
 import lombok.Data;
@@ -18,6 +19,9 @@ public class UserService {
 
 	@Autowired
 	private UserRepositoryProcessor userRepo;
+	
+	@Autowired
+	private PasswordUtils passwordUtils;
 
 	@Autowired
 	DefaultUser defaultUser;
@@ -26,8 +30,9 @@ public class UserService {
 	void initMasterUser() {
 		UserPersist userPersist = userRepo.loadByUserName(defaultUser.getUserName());
 		if (userPersist == null) {
+			String password = passwordUtils.hashPassword(defaultUser.getPassword());
 			userPersist = new UserPersist(defaultUser.getUserName(), defaultUser.getFullName(),
-					defaultUser.getPassword(), defaultUser.getRoles(), defaultUser.getEmail());
+					password, defaultUser.getRoles(), defaultUser.getEmail());
 			userRepo.save(userPersist);
 		}
 	}
@@ -37,12 +42,16 @@ public class UserService {
 
 		if (userAuth != null) {
 			String cresdential = userAuth.getPassword();
-			if (cresdential.equals(passWord)) {
+			if (passwordUtils.isPasswordMatch(passWord, cresdential)) {
 				return userAuth;
 			}
 		}
 
 		return null;
+	}
+	
+	public UserPersist persistUser(UserPersist u) {
+		return userRepo.save(u);
 	}
 
 	public UserAuthentication loadUserByUserName(String name) {

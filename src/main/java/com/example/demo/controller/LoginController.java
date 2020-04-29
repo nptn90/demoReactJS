@@ -3,6 +3,7 @@ package com.example.demo.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -33,7 +34,7 @@ public class LoginController {
 
 	@PostMapping(value = "/login")
 	public ResponseEntity<JwtResponse> login(@RequestBody JwtRequest request) throws Exception {
-		UserAuthentication user = userService.loadUserByRequest(request.getUserName(), request.getPassWord());
+		UserAuthentication user = userService.loadUserByRequest(request.getUserName(), StringUtils.trimAllWhitespace(request.getPassWord()));
 		if (user != null) {
 			String token = tokenUtils.generateToken(user);
 			long expirationDate = tokenUtils.getExpirationDateFromToken(token).getTime();
