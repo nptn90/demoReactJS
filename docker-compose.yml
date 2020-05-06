@@ -1,0 +1,43 @@
+version: "3"
+services:
+  web:
+    image: nptn90/reactdemo:0.0.2-SNAPSHOT
+    ports: 
+      - "8085:8085"
+    depends_on:
+      - my-db
+    environment: 
+      ENVIROMENT: prod
+      DATABASE: mysql
+      DB_USERNAME: root
+      DB_PASSWORD: Matkhau1990@
+      DATABASE_URL: jdbc:mysql://docker-mysql:3306/demoreactjs
+    expose: 
+      - 8085
+  my-db: 
+    image: mysql:5.7
+    container_name: docker-mysql
+    restart: always
+    environment:
+      MYSQL_DATABASE: 'demoreactjs'
+      # So you don't have to use root, but you can if you like
+      MYSQL_USER: 'root'
+      # You can use whatever password you like
+      MYSQL_PASSWORD: 'Matkhau1990@'
+      # Password for root access
+      MYSQL_ROOT_PASSWORD: 'Matkhau1990@'
+    ports:
+      # <Port exposed> : < MySQL Port running inside container>
+      - '3305:3306'
+    expose:
+      # Opens port 3306 on the container
+      - '3305'
+      # Where our data will be persisted
+    volumes:
+      - my-db:/var/lib/mysql
+    healthcheck: 
+      test: "/usr/bin/mysql --user=root --password=Matkhau1990@--execute \"SHOW DATABASES;\""
+      interval: 10s
+# Names our volume
+volumes:
+  my-db:

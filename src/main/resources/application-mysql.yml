@@ -4,3 +4,5 @@ spring:
     url: ${DATABASE_URL:jdbc:mysql://localhost:3306/demoreactjs}
     username: ${DB_USERNAME:root}
     password: ${DB_PASSWORD:Matkhau1990@}
+  jpa: 
+    database-platform: org.hibernate.dialect.MySQL5Dialect

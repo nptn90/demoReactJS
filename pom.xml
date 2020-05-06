@@ -11,7 +11,7 @@
 	</parent>
 	<groupId>com.example</groupId>
 	<artifactId>demoReactJS</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>0.0.2-SNAPSHOT</version>
 	<name>demoReactJS</name>
 	<description>Demo project for Spring Boot</description>
 
@@ -107,7 +107,6 @@
 					<plugin>
 						<groupId>com.google.cloud.tools</groupId>
 						<artifactId>jib-maven-plugin</artifactId>
-						<version>0.9.6</version>
 						<configuration>
 							<to>
 								<image>nptn90/reactdemo:${project.version}</image>
