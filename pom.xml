@@ -111,6 +111,7 @@
 							<to>
 								<image>nptn90/reactdemo:${project.version}</image>
 							</to>
+							<allowInsecureRegistries>true</allowInsecureRegistries>
 						</configuration>
 					</plugin>
 				</plugins>

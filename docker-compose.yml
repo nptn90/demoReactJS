@@ -37,7 +37,7 @@ services:
       - my-db:/var/lib/mysql
     healthcheck: 
       test: "/usr/bin/mysql --user=root --password=Matkhau1990@--execute \"SHOW DATABASES;\""
-      interval: 10s
+      interval: 30s
 # Names our volume
 volumes:
   my-db:
