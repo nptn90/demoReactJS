@@ -110,6 +110,10 @@
 						<configuration>
 							<to>
 								<image>nptn90/reactdemo:${project.version}</image>
+								<auth>
+					               <username>nptn90</username>
+					               <password>Matkhau1990@</password>
+					           </auth>
 							</to>
 							<allowInsecureRegistries>true</allowInsecureRegistries>
 						</configuration>
