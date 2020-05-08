@@ -11,6 +11,7 @@ services:
       DATABASE: mysql
       DB_USERNAME: root
       DB_PASSWORD: Matkhau1990@
+      DB_DIALEC: org.hibernate.dialect.MySQL5Dialect
       DATABASE_URL: jdbc:mysql://docker-mysql:3306/demoreactjs
     expose: 
       - 8085

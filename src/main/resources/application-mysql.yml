@@ -5,4 +5,4 @@ spring:
     username: ${DB_USERNAME:root}
     password: ${DB_PASSWORD:Matkhau1990@}
   jpa: 
-    database-platform: org.hibernate.dialect.MySQL5Dialect
+    database-platform: ${DB_DIALEC:org.hibernate.dialect.MySQL8Dialect}
