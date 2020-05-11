@@ -17,7 +17,7 @@ system:
 spring:
   profiles:
     active:
-    - ${ENVIROMENT:dev}
+    - ${ENVIROMENT:prod}
     - ${DATABASE:mysql}
   jpa:
     hibernate:
