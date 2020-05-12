@@ -110,6 +110,10 @@
 						<configuration>
 							<from>
 								<image>adoptopenjdk:11-jre-openj9</image>
+								<auth>
+					               <username>nptn90</username>
+					               <password>Matkhau1990@</password>
+					           </auth>
 							</from>
 							<to>
 								<image>nptn90/reactdemo:${project.version}</image>
