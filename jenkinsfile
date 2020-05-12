@@ -4,7 +4,7 @@ node {
         build job: 'BUILD'
     }
 
-    stage('start images from in app-server') {
+    stage('start images in app-server') {
         echo('deploy code')
         build job: 'DEPLOY'
     }
