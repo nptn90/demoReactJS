@@ -108,6 +108,9 @@
 						<groupId>com.google.cloud.tools</groupId>
 						<artifactId>jib-maven-plugin</artifactId>
 						<configuration>
+							<from>
+								<image>adoptopenjdk:11-jre-openj9</image>
+							</from>
 							<to>
 								<image>nptn90/reactdemo:${project.version}</image>
 								<auth>
