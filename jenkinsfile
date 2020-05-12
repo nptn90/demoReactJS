@@ -1,3 +1,5 @@
+properties([pipelineTriggers([githubPush()])])
+
 node {
     stage('Build Image and push to docker hub') {
         echo('build Image')
