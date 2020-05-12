@@ -1,6 +1,7 @@
-properties([pipelineTriggers([githubPush()])])
-
 node {
+	properties([pipelineTriggers([githubPush()])])
+	git url: 'https://github.com/nptn90/demoReactJS.git', branch: 'master'
+    
     stage('Build Image and push to docker hub') {
         echo('build Image')
         build job: 'BUILD'
