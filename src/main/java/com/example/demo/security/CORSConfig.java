@@ -9,7 +9,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 @Configuration
 @EnableWebMvc
-@Profile(value = "dev")
+@Profile(value = "docker")
 public class CORSConfig {
 
 	@Bean
@@ -20,7 +20,7 @@ public class CORSConfig {
 				registry.addMapping("/api/**")
 				.allowedOrigins("*")
 				.allowedMethods("*")
-				.allowedHeaders("Access-Control-Allow-Origin", "content-type", "x-token")
+				.allowedHeaders("Access-Control-Allow-Origin", "content-type", "x-token", "Referer")
 				.allowCredentials(true)
 				.maxAge(3600);
 			}

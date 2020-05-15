@@ -4,11 +4,11 @@ node {
     
     stage('Build Image and push to docker hub') {
         echo('build Image')
-        build job: 'BUILD'
+        build job: 'BUILD_BACKEND'
     }
 
     stage('start images in app-server') {
         echo('deploy code')
-        build job: 'DEPLOY'
+        build job: 'DEPLOY_BACKEND'
     }
 }
