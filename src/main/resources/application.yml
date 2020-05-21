@@ -21,4 +21,4 @@ spring:
     - ${DATABASE:mysql}
   jpa:
     hibernate:
-      ddl-auto: update
+      ddl-auto: create

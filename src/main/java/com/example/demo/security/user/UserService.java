@@ -13,8 +13,10 @@ import com.example.demo.common.PasswordUtils;
 import com.example.demo.entity.UserPersist;
 
 import lombok.Data;
+import lombok.extern.slf4j.Slf4j;
 
 @Service
+@Slf4j
 public class UserService {
 
 	@Autowired
@@ -28,12 +30,16 @@ public class UserService {
 
 	@PostConstruct
 	void initMasterUser() {
-		UserPersist userPersist = userRepo.loadByUserName(defaultUser.getUserName());
-		if (userPersist == null) {
-			String password = passwordUtils.hashPassword(defaultUser.getPassword());
-			userPersist = new UserPersist(defaultUser.getUserName(), defaultUser.getFullName(),
-					password, defaultUser.getRoles(), defaultUser.getEmail());
-			userRepo.save(userPersist);
+		try {
+			UserPersist userPersist = userRepo.loadByUserName(defaultUser.getUserName());
+			if (userPersist == null) {
+				String password = passwordUtils.hashPassword(defaultUser.getPassword());
+				userPersist = new UserPersist(defaultUser.getUserName(), defaultUser.getFullName(),
+						password, defaultUser.getRoles(), defaultUser.getEmail());
+				userRepo.save(userPersist);
+			}
+		} catch(Exception ex) {
+			log.warn("Cannot init user on this node");
 		}
 	}
 

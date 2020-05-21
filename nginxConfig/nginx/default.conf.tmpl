@@ -1,0 +1,30 @@
+# Resolver a name of container from docker host
+{{ range $host, $containers := groupByMulti $ "Env.SERVER_NAME" "," }}
+    {{ range $index, $value := $containers }}
+    {{ $network := index $value.Networks 0 }}
+    {{ $alias := index $value.Labels "com.docker.compose.service" }}
+
+upstream {{ $alias }} { server {{ $network.IP }}:8085; }
+
+    {{ end }}
+{{ end }}
+
+upstream balanacebackend {
+        server backend:8085;
+        server backend2:8085;
+}
+server {
+    listen       80;
+    server_name  localhost;
+
+    #charset koi8-r;
+    access_log  /var/log/nginx/host.access.log  main;
+
+    location /server1 {
+        #root   /usr/share/nginx/html;
+        #index  index.html index.htm;
+        proxy_redirect	off;
+        proxy_pass	http://balanacebackend;
+        #proxy_set_header	Host	$host;
+    }
+}

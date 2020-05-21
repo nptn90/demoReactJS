@@ -31,6 +31,8 @@ public class JwtRequestFilter extends OncePerRequestFilter {
 			throws ServletException, IOException {
 		final String requestTokenHeader = request.getHeader("x-token");
 		System.out.println(request.getRequestURL());
+		System.out.println(request.getHeader("Host"));
+		
 		String jwtToken = null;
 		String userName = null;
 		if (requestTokenHeader != null && requestTokenHeader.startsWith("Bearer ")) {
