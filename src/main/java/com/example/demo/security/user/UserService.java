@@ -68,6 +68,10 @@ public class UserService {
 		return userRepo.getAllUsers();
 	}
 
+	public void removeUser(String userName) {
+		userRepo.removeUser(userName);
+	}
+
 	@Configuration
 	@ConfigurationProperties(prefix = "system.user")
 	@Data

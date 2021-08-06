@@ -1,6 +1,7 @@
 package com.example.demo.security.user;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.entity.CRUDAbstract;
@@ -38,6 +39,21 @@ public class UserRepositoryProcessor extends CRUDAbstract<UserPersist, UserRepos
 
 	public List<UserPersist> getAllUsers() {
 		return userRepo.findAll();
+	}
+
+	public void removeUser(String userName) {
+		UserAuthentication userAuthentication = (UserAuthentication) SecurityContextHolder.getContext().getAuthentication();
+		if(userAuthentication.getName().equals(userName)) {
+			throw new RuntimeException("Cannot delete Admin roles");
+		}
+
+		UserPersist userPersist = userRepo.loadUserByUserName(userName);
+
+		if(userPersist != null) {
+			userRepo.delete(userPersist);
+		} else {
+			throw new RuntimeException("Not found user");
+		}
 	}
 	
 }
