@@ -2,8 +2,8 @@ server:
   port: 8085
 system:
   user:
-    username: nhan
-    password: nguyen
+    username: admin
+    password: admin
     fullName: Nhan Nguyen Pham Thanh
     roles: 
       - ADMIN

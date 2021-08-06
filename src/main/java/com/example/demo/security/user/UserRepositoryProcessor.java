@@ -6,6 +6,8 @@ import org.springframework.stereotype.Service;
 import com.example.demo.entity.CRUDAbstract;
 import com.example.demo.entity.UserPersist;
 
+import java.util.List;
+
 @Service
 public class UserRepositoryProcessor extends CRUDAbstract<UserPersist, UserRepository, String> {
 
@@ -32,6 +34,10 @@ public class UserRepositoryProcessor extends CRUDAbstract<UserPersist, UserRepos
 			userAuth = new UserAuthentication(userPersist.getName(), userPersist.getPassword(), userPersist.getRoles());
 		}
 		return userAuth;
+	}
+
+	public List<UserPersist> getAllUsers() {
+		return userRepo.findAll();
 	}
 	
 }

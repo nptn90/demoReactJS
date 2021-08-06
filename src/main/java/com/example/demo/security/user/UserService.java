@@ -64,6 +64,10 @@ public class UserService {
 		return userRepo.loadUserByUserName(name);
 	}
 
+	public List<UserPersist> getAllUsers() {
+		return userRepo.getAllUsers();
+	}
+
 	@Configuration
 	@ConfigurationProperties(prefix = "system.user")
 	@Data

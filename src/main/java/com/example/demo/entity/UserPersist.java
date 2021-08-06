@@ -2,10 +2,7 @@ package com.example.demo.entity;
 
 import java.util.List;
 
-import javax.persistence.CollectionTable;
-import javax.persistence.Column;
-import javax.persistence.ElementCollection;
-import javax.persistence.Entity;
+import javax.persistence.*;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -30,7 +27,7 @@ public class UserPersist extends BaseEntity {
 	@Column(name = "pass_word")
 	private String password;
 	
-	@ElementCollection
+	@ElementCollection(fetch = FetchType.EAGER)
 	@CollectionTable(name = "roles")
 	private List<String> roles;
 	
